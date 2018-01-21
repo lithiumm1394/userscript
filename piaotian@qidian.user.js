@@ -1,12 +1,11 @@
 // ==UserScript==
 // @name         piaotian@qidian
-// @version      0.8
+// @version      0.9
 // @description  飘天UI改为起点UI
 // @author       lithium
 // @include      /^http://www\.piaotian\.com/html/\d+/\d+/$/
 // @require      https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js
 // @run-at       document-start
-// @grant        none
 // ==/UserScript==
 
 var menuurl = window.location.href;
@@ -25,8 +24,9 @@ $(document).ready(function(){
 
 	//添加css样式
 	$('head').append('<link rel="stylesheet" type="text/css"'+
-					 'href="//drive.google.com/uc?authuser=0&id=1nqB7xRy-qzNo8LlAKZgSciLkC3SIa_nT&export=download">');
-	$('head').append('<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">');
+		'href="https://rawgit.com/lithiumm1394/userscript/master/stylesheet.css">');
+	$('head').append('<link rel="stylesheet"'+
+		'href="https://fonts.googleapis.com/icon?family=Material+Icons">');
 
 	//超链接改变为click event
 	$(".mainbody ul li a").each(function(){
@@ -41,38 +41,38 @@ $(document).ready(function(){
 			//添加选项
 			$('body').prepend('<footer></footer>');
 			$('footer').append('<div class="suboption" data-option="font-size"></div>')
-				.append('<div class="suboption" data-option="line-height"></div>')
-				.append('<div class="suboption" data-option="color-theme"></div>')
-				.append('<div class="option"></div>');
+			.append('<div class="suboption" data-option="line-height"></div>')
+			.append('<div class="suboption" data-option="color-theme"></div>')
+			.append('<div class="option"></div>');
 
 			$('.option').append('<div id="menu" class="button"></div>')
-				.append('<div id="font-size" class="button"></div>')
-				.append('<div id="line-height" class="button"></div>')
-				.append('<div id="color-theme" class="button"></div>');
+			.append('<div id="font-size" class="button"></div>')
+			.append('<div id="line-height" class="button"></div>')
+			.append('<div id="color-theme" class="button"></div>');
 			$('div#menu').append('<i class="material-icons light-48">menu</i>')
-				.append('<p>目录</p>');
+			.append('<p>目录</p>');
 			$('div#font-size').append('<i class="material-icons light-48">format_size</i>')
-				.append('<p>字体大小</p>');
+			.append('<p>字体大小</p>');
 			$('div#line-height').append('<i class="material-icons light-48">line_weight</i>')
-				.append('<p>行间距</p>');
+			.append('<p>行间距</p>');
 			$('div#color-theme').append('<i class="material-icons light-48">invert_colors</i>')
-				.append('<p>背景</p>');
+			.append('<p>背景</p>');
 
 			$('.suboption').append('<div class="container"></div>');
 			$('.suboption[data-option=font-size] > .container')
-				.append('<i class="material-icons light-48" data-type="-">format_size</i>')
-				.append('<input type="range" min="0.5" max="1.3" step="0.05" value="1" class="slider">')
-				.append('<i class="material-icons light-48" data-type="+">text_fields</i>');
+			.append('<i class="material-icons light-48" data-type="-">text_fields</i>')
+			.append('<input type="range" min="0.5" max="1.3" step="0.05" value="1" class="slider">')
+			.append('<i class="material-icons light-48" data-type="+">format_size</i>');
 
 			$('.suboption[data-option=line-height] > .container')
-				.append('<i class="material-icons light-48" data-type="-">menu</i>')
-				.append('<input type="range" min="1.3" max="2" step="0.1" value="1.7" class="slider">')
-				.append('<i class="material-icons light-48" data-type="+">reorder</i>');
+			.append('<i class="material-icons light-48" data-type="-">reorder</i>')
+			.append('<input type="range" min="1.3" max="2" step="0.1" value="1.7" class="slider">')
+			.append('<i class="material-icons light-48" data-type="+">menu</i>');
 
 			$('.suboption[data-option=color-theme] > .container')
-				.append('<div class="day-normal sample"></div>')
-				.append('<div class="day-white sample"></div>')
-				.append('<div class="night sample">夜间</div>');
+			.append('<div class="day-normal sample"></div>')
+			.append('<div class="day-white sample"></div>')
+			.append('<div class="night sample">夜间</div>');
 
 			//显示选项
 			$(window).on("click", function(event){
@@ -86,11 +86,22 @@ $(document).ready(function(){
 			//目录
 			$('div#menu').on('click', function(){
 				$('div.mainbody').addClass('mainbody menu');
-				$('div.mainbody').show();
+				$('div.mainbody').toggle();
+				//高亮当前章节
+				var str = $('header').text().split(/\s+/).pop();
+				var $thisChapter = $('.mainbody li:contains('+ str +')');
+				var no = $thisChapter.parent().prevAll().length * 4 + $thisChapter.prevAll().length + 1;
+				$thisChapter.css('color', 'darkred');
+				//滚动到当前章节位置
+				var height = $('.mainbody li').height();
+				var middle = Math.round( $(window).height() / height / 2 );
+				$('div.mainbody').scrollTop((no-middle)*height);
+				//隐藏
 				$(window).on("touchend.sidemenu", function(event){
 					var $exception = $('div.mainbody, div#menu');
 					if (!$exception.is(event.target) && $exception.has(event.target).length === 0) {
 						$('div.mainbody').hide();
+						$thisChapter.removeAttr('style');
 						$(window).off(".sidemenu");
 					}
 				});
@@ -125,7 +136,7 @@ $(document).ready(function(){
 			$('div.suboption[data-option=color-theme] > .container > div').on('click', function(){
 				var name = this.className.split(" ");
 				$('.content').attr('class', 'content ' + name[0]);
-				$('header').addClass(name[0]);
+				$('header').attr('class', name[0]);
 			});
 
 			//添加题头
@@ -137,6 +148,7 @@ $(document).ready(function(){
 		$(this).parent().on('click.load', function(){
 			$('.chapter').remove();
 			$('div.mainbody').hide();
+			$('.mainbody li').removeAttr('style');
 			$(window).off('touchend.sidemenu');
 			loadChapter(url, 0);
 		});
@@ -152,15 +164,15 @@ function loadChapter(url, num) {
 	$('.content').append('<div id=' + num + ' class="chapter"></div>');
 	var thisChapter = 'div#' + num;
 	$(thisChapter).append('<div class="chapterTitle"></div>')
-		.append('<div class="chapterContent"></div>');
+	.append('<div class="chapterContent"></div>');
 
 	$.get(url)
-		.done(function(data){
+	.done(function(data){
 		//解析标题
 		var titleRe = /<H1><a href=".+">(.+)<\/a>(.+)<\/H1>/gi;
 		var title = titleRe.exec(data);
 		$(thisChapter + '> div.chapterTitle').text(title[2]);
-		$('header').text(title[2]);
+		$('header').text(title[1] + title[2]);
 
 		//解析章节内容
 		var contentRe = /&nbsp;&nbsp;&nbsp;&nbsp;(.+?)(?:(?:<br \/>)|\r\n<\/div>)/gi;
@@ -178,10 +190,10 @@ function loadChapter(url, num) {
 				var scrollHeight = $(document).height();
 				var scrollPosition = $(window).height() + $(window).scrollTop() + 1;
 				//if (scrollHeight - scrollPosition < 1000) {
-				if ((scrollHeight - scrollPosition) / scrollHeight === 0) {
-					loadChapter(nexturl, num+1);
-				}
-			});
+					if ((scrollHeight - scrollPosition) / scrollHeight === 0) {
+						loadChapter(nexturl, num+1);
+					}
+				});
 		}
 	});
 }
