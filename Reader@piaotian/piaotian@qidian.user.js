@@ -9,7 +9,7 @@
 // ==/UserScript==
 
 var menuurl = window.location.href;
-var addhtml = "https://raw.githubusercontent.com/lithiumm1394/userscript/master/custom_html.html";
+var addhtml = "https://raw.githubusercontent.com/lithiumm1394/userscript/master/option_menu.html";
 
 $(document).ready(function(){
 	//删除脚本，css
@@ -34,14 +34,72 @@ $(document).ready(function(){
 	//超链接改变为click event
 	$(".mainbody ul li a").each(function(){
 		$(this).parent().on('click.change', function(){
-			// 删除目录
-			$('.title').remove();
-			$('body').append('<div class="content"></div>');
+			// 修改内容
 			$('.mainbody ul li').off('click.change');
+			$('.title').remove();
+			$('body').prepend('<header></header>')
+			.append('<div class="content"></div>');
+			$('.mainbody').addClass('mainbody menu');
 
 			//添加选项
 			$.get(addhtml, function(data){
-				$('body').prepend(data);
+				$('body').append(data);
+
+				//显示目录
+				$('#menu').on('click', function(){
+					$('.mainbody').toggle();
+					//高亮当前章节
+					var str = $('header').text().split(/\s+/).pop();
+					var $thisChapter = $('.mainbody li:contains('+ str +')');
+					$thisChapter.css('color', 'darkred');
+					//滚动到当前章节位置
+					var no = $thisChapter.parent().prevAll().length * 4 + $thisChapter.prevAll().length + 1;
+					var height = $('.mainbody li').height();
+					var middle = Math.round( $(window).height() / height / 2 );
+					$('.mainbody').scrollTop((no-middle)*height);
+					//隐藏
+					$(window).on("touchend.sidemenu", function(event){
+						var $exception = $('.mainbody, #menu');
+						if (!$exception.is(event.target) && $exception.has(event.target).length === 0) {
+							$('.mainbody').hide();
+							$thisChapter.removeAttr('style');
+							$(window).off(".sidemenu");
+						}
+					});
+				});
+
+				//显示次选项
+				$('#font-size, #line-height, #color-theme').on('click', function(){
+					var option = $(this).attr('id');
+					$('.suboption[data-option != '+option+']').hide();
+					$('.suboption[data-option = '+option+']').toggle();
+				});
+
+				//slider
+				var $slider = $('.suboption[data-option=font-size], .suboption[data-option=line-height]');
+
+				$slider.find('input').on('input', function(){
+					var option = $(this).parents('.suboption').attr('data-option');
+					var value = $(this).val();
+					if (option == 'font-size') $('.content').css('font-size', value + 'em');
+					if (option == 'line-height') $('.content').css('line-height', value);
+				});
+
+				//slider button (- & +)
+				$slider.find('i').click(function(){
+					var input = $(this).siblings('input').get(0);
+					var $input = $(this).siblings('input');
+					if ($(this).attr('data-type') == '+') input.stepUp();
+					if ($(this).attr('data-type') == '-') input.stepDown();
+					$input.trigger('input');
+				});
+
+				//背景次选项
+				$('.suboption[data-option=color-theme] .sample').on('click', function(){
+					var name = this.className.split(" ");
+					$('.content').attr('class', 'content ' + name[0]);
+					$('header').attr('class', name[0]);
+				});
 			});
 
 			//显示选项
@@ -52,66 +110,6 @@ $(document).ready(function(){
 					});
 				}
 			});
-
-			//目录
-			$('#menu').on('click', function(){
-				$('.mainbody').addClass('mainbody menu');
-				$('.mainbody').toggle();
-				//高亮当前章节
-				var str = $('header').text().split(/\s+/).pop();
-				var $thisChapter = $('.mainbody li:contains('+ str +')');
-				$thisChapter.css('color', 'darkred');
-
-				//滚动到当前章节位置
-				var no = $thisChapter.parent().prevAll().length * 4 + $thisChapter.prevAll().length + 1;
-				var height = $('.mainbody li').height();
-				var middle = Math.round( $(window).height() / height / 2 );
-				$('div.mainbody').scrollTop((no-middle)*height);
-				//隐藏
-				$(window).on("touchend.sidemenu", function(event){
-					var $exception = $('div.mainbody, div#menu');
-					if (!$exception.is(event.target) && $exception.has(event.target).length === 0) {
-						$('div.mainbody').hide();
-						$thisChapter.removeAttr('style');
-						$(window).off(".sidemenu");
-					}
-				});
-			});
-
-			//显示次选项
-			$('div#font-size, div#line-height, div#color-theme').on('click', function(event){
-				var option = $(this).attr('id');
-				$('.suboption[data-option != '+option+']').hide();
-				$('.suboption[data-option = '+option+']').toggle();
-			});
-
-			//slider
-			$('.suboption[data-option=font-size], .suboption[data-option=line-height]').find('input').on('input', function(){
-				var option = $(this).parent().parent('.suboption').attr('data-option');
-				var value = $(this).val();
-				console.log(value);
-				if (option == 'font-size') $('.content').css('font-size', value + 'em');
-				if (option == 'line-height') $('.content').css('line-height', value);
-			});
-
-			//slider button (- & +)
-			$('.suboption[data-option=font-size], .suboption[data-option=line-height]').find('i').click(function(){
-				var input = $(this).siblings('input').get(0);
-				var $input = $(this).siblings('input');
-				if ($(this).attr('data-type') == '+') input.stepUp();
-				if ($(this).attr('data-type') == '-') input.stepDown();
-				$input.trigger('input');
-			});
-
-			//背景次选项
-			$('div.suboption[data-option=color-theme] > .container > div').on('click', function(){
-				var name = this.className.split(" ");
-				$('.content').attr('class', 'content ' + name[0]);
-				$('header').attr('class', name[0]);
-			});
-
-			//添加题头
-			$('body').prepend('<header></header>');
 		});
 
 		var url = menuurl + $(this).attr("href");
@@ -130,7 +128,7 @@ $(document).ready(function(){
 });
 
 
-function loadChapter(url, num) {
+function loadChapter(url, num){
 	$(window).off("scroll");
 	$('.content').append('<div id=' + num + ' class="chapter"></div>');
 	var thisChapter = 'div#' + num;
@@ -161,10 +159,10 @@ function loadChapter(url, num) {
 				var scrollHeight = $(document).height();
 				var scrollPosition = $(window).height() + $(window).scrollTop() + 1;
 				//if (scrollHeight - scrollPosition < 1000) {
-					if ((scrollHeight - scrollPosition) / scrollHeight === 0) {
-						loadChapter(nexturl, num+1);
-					}
-				});
+				if ((scrollHeight - scrollPosition) / scrollHeight === 0) {
+					loadChapter(nexturl, num+1);
+				}
+			});
 		}
 	});
 }
