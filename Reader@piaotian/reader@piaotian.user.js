@@ -9,7 +9,7 @@
 // ==/UserScript==
 
 var menuurl = window.location.href;
-var addhtml = "https://raw.githubusercontent.com/lithiumm1394/userscript/master/option_menu.html";
+var addhtml = "https://raw.githubusercontent.com/lithiumm1394/userscript/master/Reader%40piaotian/option_menu.html";
 
 $(document).ready(function(){
 	//删除脚本，css
@@ -27,7 +27,7 @@ $(document).ready(function(){
 
 	//添加css样式
 	$('head').append('<link rel="stylesheet" type="text/css"'+
-		'href="https://rawgit.com/lithiumm1394/userscript/master/stylesheet.css">');
+		'href="https://rawgit.com/lithiumm1394/userscript/master/Reader%40piaotian/stylesheet.css">');
 	$('head').append('<link rel="stylesheet"'+
 		'href="https://fonts.googleapis.com/icon?family=Material+Icons">');
 
