@@ -9,18 +9,21 @@
 // ==/UserScript==
 
 var menuurl = window.location.href;
+var addhtml = "https://raw.githubusercontent.com/lithiumm1394/userscript/master/custom_html.html";
 
 $(document).ready(function(){
-	//删除繁杂内容
-	$("div#tl, div#tr, div.list, div.bottom").remove();
-	$("div > table").remove();
-	$('a:contains(分享到twitter)').parent().parent().remove();
+	//删除脚本，css
 	$('head > script, head > style, head > link').remove();
-	$('body > center').remove();
+	$("body > center").remove();
 	$('.centent > script').remove();
+
+	//删除繁杂内容
+	$("#tl, #tr").remove();
+	$("div > table, .bottom, .top").remove();
+	$('.list').remove();
+	$('ul:contains(分享到twitter)').remove();
 	$("li:contains('\xa0')").remove();
-	$('div.top').remove();
-	$('div.centent > ul, div.mainbody').unwrap();
+	$('ul, .mainbody').unwrap();
 
 	//添加css样式
 	$('head').append('<link rel="stylesheet" type="text/css"'+
@@ -30,69 +33,37 @@ $(document).ready(function(){
 
 	//超链接改变为click event
 	$(".mainbody ul li a").each(function(){
-		var url = menuurl + $(this).attr("href");
-
 		$(this).parent().on('click.change', function(){
 			// 删除目录
 			$('.title').remove();
 			$('body').append('<div class="content"></div>');
-			$('div.mainbody ul li').off('click.change');
+			$('.mainbody ul li').off('click.change');
 
 			//添加选项
-			$('body').prepend('<footer></footer>');
-			$('footer').append('<div class="suboption" data-option="font-size"></div>')
-			.append('<div class="suboption" data-option="line-height"></div>')
-			.append('<div class="suboption" data-option="color-theme"></div>')
-			.append('<div class="option"></div>');
-
-			$('.option').append('<div id="menu" class="button"></div>')
-			.append('<div id="font-size" class="button"></div>')
-			.append('<div id="line-height" class="button"></div>')
-			.append('<div id="color-theme" class="button"></div>');
-			$('div#menu').append('<i class="material-icons light-48">menu</i>')
-			.append('<p>目录</p>');
-			$('div#font-size').append('<i class="material-icons light-48">format_size</i>')
-			.append('<p>字体大小</p>');
-			$('div#line-height').append('<i class="material-icons light-48">line_weight</i>')
-			.append('<p>行间距</p>');
-			$('div#color-theme').append('<i class="material-icons light-48">invert_colors</i>')
-			.append('<p>背景</p>');
-
-			$('.suboption').append('<div class="container"></div>');
-			$('.suboption[data-option=font-size] > .container')
-			.append('<i class="material-icons light-48" data-type="-">text_fields</i>')
-			.append('<input type="range" min="0.5" max="1.3" step="0.05" value="1" class="slider">')
-			.append('<i class="material-icons light-48" data-type="+">format_size</i>');
-
-			$('.suboption[data-option=line-height] > .container')
-			.append('<i class="material-icons light-48" data-type="-">reorder</i>')
-			.append('<input type="range" min="1.3" max="2" step="0.1" value="1.7" class="slider">')
-			.append('<i class="material-icons light-48" data-type="+">menu</i>');
-
-			$('.suboption[data-option=color-theme] > .container')
-			.append('<div class="day-normal sample"></div>')
-			.append('<div class="day-white sample"></div>')
-			.append('<div class="night sample">夜间</div>');
+			$.get(addhtml, function(data){
+				$('body').prepend(data);
+			});
 
 			//显示选项
 			$(window).on("click", function(event){
 				if (!$('footer').is(event.target) && $('footer').has(event.target).length === 0) {
 					$('footer').slideToggle(function(){
-						$('div.suboption').hide();
+						$('.suboption').hide();
 					});
 				}
 			});
 
 			//目录
-			$('div#menu').on('click', function(){
-				$('div.mainbody').addClass('mainbody menu');
-				$('div.mainbody').toggle();
+			$('#menu').on('click', function(){
+				$('.mainbody').addClass('menu');
+				$('.mainbody').toggle();
 				//高亮当前章节
 				var str = $('header').text().split(/\s+/).pop();
 				var $thisChapter = $('.mainbody li:contains('+ str +')');
-				var no = $thisChapter.parent().prevAll().length * 4 + $thisChapter.prevAll().length + 1;
 				$thisChapter.css('color', 'darkred');
+
 				//滚动到当前章节位置
+				var no = $thisChapter.parent().prevAll().length * 4 + $thisChapter.prevAll().length + 1;
 				var height = $('.mainbody li').height();
 				var middle = Math.round( $(window).height() / height / 2 );
 				$('div.mainbody').scrollTop((no-middle)*height);
@@ -141,9 +112,9 @@ $(document).ready(function(){
 
 			//添加题头
 			$('body').prepend('<header></header>');
-
 		});
 
+		var url = menuurl + $(this).attr("href");
 		//载入章节
 		$(this).parent().on('click.load', function(){
 			$('.chapter').remove();
