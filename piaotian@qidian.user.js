@@ -55,7 +55,7 @@ $(document).ready(function(){
 
 			//目录
 			$('#menu').on('click', function(){
-				$('.mainbody').addClass('menu');
+				$('.mainbody').addClass('mainbody menu');
 				$('.mainbody').toggle();
 				//高亮当前章节
 				var str = $('header').text().split(/\s+/).pop();
