@@ -20,4 +20,7 @@ $(document).ready(function(){
 	$("div.viewRate").remove();
 	$("div.box.pd2.mbn.adminBox").remove();
 	$("div.mtn.editor_box").remove();
+
+	$("div.wp").css("padding-top", "0");
+	$("div.bottomarea").css("padding-top", "30px");
 });
