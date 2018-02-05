@@ -4,6 +4,7 @@
 // @author lithium
 // @match https://ck101.com/*
 // @require https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js
+// @updateURL https://github.com/lithiumm1394/userscript/raw/master/ck101.user.js
 // @downloadURL https://github.com/lithiumm1394/userscript/raw/master/ck101.user.js
 // @grant none
 // ==/UserScript==
