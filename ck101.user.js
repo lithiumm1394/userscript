@@ -1,8 +1,10 @@
 // ==UserScript==
 // @name ck101
-// @namespace lithium
+// @version 1.0
+// @author lithium
 // @match https://ck101.com/*
 // @require https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js
+// @downloadURL https://github.com/lithiumm1394/userscript/raw/master/ck101.user.js
 // @grant none
 // ==/UserScript==
 
