@@ -30,7 +30,7 @@ $(document).ready(function(){
 	$(".wp").css('padding', '0');
 	$(".pg").css('margin-top', '10px');
 	$(".mobile_main").css({'box-shadow':'none'});
-	$(".sideBtn").css({'background-size':'75%', 'right':'12px', 'left':'auto', 'bottom':'138px'});
+	$(".sideBtn").css({'background-size':'75%', 'right':'12px', 'bottom':'138px', 'left':'auto', 'top':'auto'});
 	$(".return-list.toolbox-box-trigger").css({'right':'12px','bottom':'87px'});
 	$(".goTop.down").css({'right':'12px','bottom':'36px'});
 	$(".toolbox-box").css({'right':'34.5px','bottom':'109.5px'});
