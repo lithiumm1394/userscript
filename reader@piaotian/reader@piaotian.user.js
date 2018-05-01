@@ -160,8 +160,8 @@ function loadChapter(url, num){
 			$(window).on("scroll", function() {
 				var scrollHeight = $(document).height();
 				var scrollPosition = $(window).height() + $(window).scrollTop() + 1;
-				//if (scrollHeight - scrollPosition < 1000) {
-				if ((scrollHeight - scrollPosition) / scrollHeight === 0) {
+				if (scrollHeight - scrollPosition < 1000) {
+				//if ((scrollHeight - scrollPosition) / scrollHeight === 0) {
 					loadChapter(nexturl, num+1);
 				}
 			});
