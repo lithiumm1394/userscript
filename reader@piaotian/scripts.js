@@ -12,8 +12,8 @@ var reverseList = function(node){
 
 var slide = function(node, time){
 	return new Promise(resolve => {
-		node.style.setProperty('--animation-duration', time/1000)
-		node.style.setProperty('--animation-iteration-count', 2)	//start animation
+		node.style.setProperty('--animation-duration', time/1000 + 's')
+		node.style.setProperty('--animation-iteration-count', 'infinite')	//start animation
 		setTimeout(function(){
 			resolve('slide finish')
 			console.log('animation finish')

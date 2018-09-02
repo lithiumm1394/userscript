@@ -41,8 +41,8 @@ button {
 }
 
 @keyframes slide {
-	from {margin-top: 0;}
-	to {margin-top: 1000px;}
+	from {transform: translateY(0);}
+	to {transform: translateY(500px);}
 }
 
 ul {
