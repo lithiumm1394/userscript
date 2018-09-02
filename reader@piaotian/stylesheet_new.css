@@ -1,35 +1,40 @@
+html {
+	font-size: 4px;
+}
+
 body {
-	margin: 0 24px;
-	font-size: 2rem;
+	margin: 0 12px;
+	font-size: 4rem;
 	font-weight: 400;
 	background-color: #eee;
 }
 
 h1 {
-	margin: 2rem 0;
+	margin: 3rem 0;
 	text-align: center;
-	font-size: 4rem;
+	font-size: 6rem;
 }
 
 h2 {
-	margin: 2rem 0;
+	margin: 3rem 0;
+	font-size: 5rem;
 }
 
 button {
 	border-width: 0;
 	background-color: transparent;
-
+	padding: 0;
 }
 
 .subtitle {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	border-top: 4px solid #ffab91;
+	border-top: 2px solid #ffab91;
 }
 
 .material-icons.light-48 {
-	font-size: 2em;
+	font-size: 8rem;
 	color: #ff5722;
 }
 
@@ -40,20 +45,19 @@ button {
 }
 
 .menu li {
-	font-size: 1em;
+	font-size: 4.5rem;
 	line-height: 2.5;
-	border-bottom: 2px solid #ffccbc;
+	border-bottom: 1px solid #ffccbc;
 }
 
 /*menu animation*/
 .slidedown {
-	transition: transform 1s;
-	transform: translateY(100vh);
+	transition: transform 0.5s;
+	transform: translateY(100px);
 }
 
 .slideup {
 	transition: transform 1s;
-	transform: translateY(-100vh);
 }
 
 .mainbody.menu {

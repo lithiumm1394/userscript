@@ -12,6 +12,7 @@ var reverseList = function(node){
 var reverseListAnim = async function() {
 	let container = document.querySelector('ul')
 	container.className = 'menu slidedown'
+	console.log(start)
 	const result = await reverseList(container)
 	console.log(result)
 	container.className = 'menu slideup'
