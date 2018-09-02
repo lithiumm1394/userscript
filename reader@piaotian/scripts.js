@@ -9,20 +9,20 @@ var reverseList = function(node){
 	})
 }
 
-var slide = function(time){
+var slide = function(node, time){
 	return new Promise(resolve => {
-		let container = document.querySelector('ul')
-		container.style.setProperty('--animation-duration', time)
-		container.style.setProperty('--animation-iteration-count', 2)	//start animation
+		node.style.setProperty('--animation-duration', time)
+		node.style.setProperty('--animation-iteration-count', 2)	//start animation
 		setTimeout(resolve('finish'), time)
 	})
 }
 
 var reverseListAnim = async function() {
+	let container = document.querySelector('ul')
 	console.log('start')
-	const animation = slide(500)
+	const animation = slide(container, 500)
 	const result = reverseList(container)
 	if (await animation == 'finish' && await result == finish)
-		document.querySelector('ul').style.setProperty('--animation-iteration-count', 0)
+		container.style.setProperty('--animation-iteration-count', 0)
 	console.log(result)
 }
