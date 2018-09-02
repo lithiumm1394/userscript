@@ -22,7 +22,8 @@ var reverseListAnim = async function() {
 	console.log('start')
 	const animation = slide(container, 500)
 	const result = reverseList(container)
-	if (await animation == 'finish' && await result == finish)
+	if (await animation == 'finish' && await result == 'finish'){
 		container.style.setProperty('--animation-iteration-count', 0)
-	console.log(result)
+		console.log('finish')
+	}
 }
