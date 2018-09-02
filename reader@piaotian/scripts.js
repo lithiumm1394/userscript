@@ -5,15 +5,19 @@ var reverseList = function(node){
 			arr.push(node.removeChild(node.firstChild))
 		while (arr.length > 0)
 			node.appendChild(arr.pop())
-		resolve('finish.')
+		resolve('reverseList finish')
+		console.log('sort finish')
 	})
 }
 
 var slide = function(node, time){
 	return new Promise(resolve => {
-		node.style.setProperty('--animation-duration', time)
+		node.style.setProperty('--animation-duration', time/1000)
 		node.style.setProperty('--animation-iteration-count', 2)	//start animation
-		setTimeout(resolve('finish'), time)
+		setTimeout(function(){
+			resolve('slide finish')
+			console.log('animation finish')
+		}, time)
 	})
 }
 
@@ -22,8 +26,7 @@ var reverseListAnim = async function() {
 	console.log('start')
 	const animation = slide(container, 500)
 	const result = reverseList(container)
-	if (await animation == 'finish' && await result == 'finish'){
-		container.style.setProperty('--animation-iteration-count', 0)
-		console.log('finish')
-	}
+	console.log(await animation)
+	console.log(await result)
+	container.style.setProperty('--animation-iteration-count', 0)
 }
