@@ -25,16 +25,14 @@ let retrive = new Promise(
 )
 
 // 建立新html文件
-retrive.then((data) => {
+retrive.then(data => {
   let html = '<html><head>'
   + '<link rel="stylesheet" type="text/css" href="https://rawgit.com/lithiumm1394/userscript/master/reader%40piaotian/stylesheet_new.css">'
   + '<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">'
-  + '<script> var menu = ' + data.menu + '</script>'
   + '</head><body>'
   + '<h1>' + data.title + '</h1>'
   + '<div class="subtitle"><h2>作者：' + data.author + '</h2>'
-  + '<button class="material-icons light-48" onclick="reverseList()">low_priority</button>'
-  + '<script> function reverseList(){ } </script></div>'
+  + '<button class="material-icons light-48">low_priority</button>'
   + '<div class="menu"><ul>'
 
   for (let item of data.menu)
@@ -44,4 +42,8 @@ retrive.then((data) => {
 
   document.write(html)
   document.close()
+
+  return data.menu
+}).then(chapters => {
+  
 })
