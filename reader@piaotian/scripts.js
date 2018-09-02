@@ -31,5 +31,5 @@ var reverseListAnim = async function() {
 	console.log(await animation)
 	console.log(await result)
 	// container.style.setProperty('--animation-iteration-count', 0)
-	node.classList.remove('active')
+	container.classList.remove('active')
 }
