@@ -33,7 +33,7 @@ retrive.then(data => {
   + '</head><body>'
   + '<h1>' + data.title + '</h1>'
   + '<div class="subtitle"><h2>作者：' + data.author + '</h2>'
-  + '<button class="material-icons light-48" onClick="reverseList()">low_priority</button>'
+  + '<button class="material-icons light-48" onClick="reverseListAnim()">low_priority</button>'
   + '</div><ul class="menu">'
 
   for (let item of data.menu)

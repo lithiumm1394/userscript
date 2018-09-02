@@ -45,6 +45,17 @@ button {
 	border-bottom: 2px solid #ffccbc;
 }
 
+/*menu animation*/
+.slidedown {
+	transition: transform 1s;
+	transform: translateY(100vh);
+}
+
+.slideup {
+	transition: transform 1s;
+	transform: translateY(-100vh);
+}
+
 .mainbody.menu {
 	width: 75%;
 	height: 100%;
