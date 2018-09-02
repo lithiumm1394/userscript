@@ -1,0 +1,180 @@
+body {
+	margin: 0;
+	font-size: 1rem;
+	font-weight: 400;
+	background-color: #f5f5f5;
+}
+
+h1 {
+	margin: 1em 0;
+	text-align: center;
+	font-size: 1.5em;
+}
+
+.menu {
+	margin: 0 24px;
+}
+
+.menu ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.menu ul li {
+	font-size: 1em;
+	line-height: 2.5;
+	border-bottom: 1px solid #e0e0e0;
+}
+
+.mainbody.menu {
+	width: 75%;
+	height: 100%;
+	margin: 0;
+	padding-left: 1em;
+	position: fixed;
+	right: 0;
+	top: 0;
+	z-index: 2;
+	font-size: 2.25em;
+	background-color: white;
+	overflow: scroll;
+}
+
+.content {
+	font-size: 1em;
+	line-height: 1.7;
+}
+
+.chapter {
+	margin:0 24px;
+}
+
+.chapterTitle {
+	padding:0.5em 0;
+	font-size: 4em;
+}
+
+.chapterContent p {
+	margin: 0;
+	font-size: 3em;
+	text-indent: 2em;
+	text-align: justify;
+}
+
+header {
+	width: 100%;
+	position: sticky;
+	top: 0;
+	left: 0;
+	z-index: 1;
+	padding:1rem 2rem;
+	font-size:.5rem;
+	background-color: white;
+}
+
+footer {
+	width: 100%;
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	z-index: 1;
+	background-color: rgba(0,0,0,.9);
+	color: white;
+	-moz-user-select: none;
+	display: none;
+}
+
+.option {
+	height: 120px;
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+}
+
+.option .button {
+	padding: 0 3em;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.option .button p {
+	margin: 0;
+	font-size: 1.5em;
+}
+
+.material-icons.light-48 {
+	font-size: 3em;
+}
+
+.suboption {
+	height: 120px;
+	display: none;
+}
+
+.container {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+}
+
+.container i {
+	padding: .5em;
+}
+
+.slider {
+	width: 100%;
+	height: 100%;
+	background-color: transparent;
+	border: none;
+}
+
+.slider::-moz-range-track {
+	height: .5em;
+	background-color: white;
+}
+
+.slider::-moz-range-progress {
+	background-color: yellowgreen;
+	height: .5em;
+}
+
+.slider::-moz-range-thumb {
+	width: 2.5em;
+	height: 2.5em;
+	border: none;
+	border-radius: 100px;
+	background: yellowgreen;
+}
+
+.sample {
+	width: 20%;
+	height: 50%;
+	border-radius: 1rem;
+	font-size: 2em;
+	display: flex;
+	justify-content:center;
+	align-items: center;
+}
+
+.day-normal {
+	background: url(https://qidian.gtimg.com/qdm/img/skin-default-t.ece62.jpg) no-repeat center top,
+		url(https://qidian.gtimg.com/qdm/img/skin-default-b.79f06.jpg) no-repeat center bottom,
+		url(https://qidian.gtimg.com/qdm/img/skin-default-m.35905.jpg) repeat-y center 119px;
+	background-size: 100%;
+	color: black;
+}
+
+.day-white {
+	background-color: white;
+	color: black;
+}
+
+.night {
+	background-color: #1a1a1a;
+	color: rgba(255,255,255,.5);
+}
