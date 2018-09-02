@@ -29,11 +29,12 @@ retrive.then(data => {
   let html = '<html><head>'
   + '<link rel="stylesheet" type="text/css" href="https://rawgit.com/lithiumm1394/userscript/master/reader%40piaotian/stylesheet_new.css">'
   + '<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">'
+  + '<script src="https://rawgit.com/lithiumm1394/userscript/master/reader%40piaotian/scripts.js"></script>'
   + '</head><body>'
   + '<h1>' + data.title + '</h1>'
   + '<div class="subtitle"><h2>作者：' + data.author + '</h2>'
-  + '<button class="material-icons light-48">low_priority</button>'
-  + '<div class="menu"><ul>'
+  + '<button class="material-icons light-48" onClick="reverseList()">low_priority</button>'
+  + '</div><div class="menu"><ul>'
 
   for (let item of data.menu)
     html += '<li>' + item.text + '</li>'
@@ -42,8 +43,4 @@ retrive.then(data => {
 
   document.write(html)
   document.close()
-
-  return data.menu
-}).then(chapters => {
-  
 })
