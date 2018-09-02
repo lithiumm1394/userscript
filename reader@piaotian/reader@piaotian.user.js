@@ -3,7 +3,7 @@
 // @version      0.9
 // @description  飘天UI改为起点UI
 // @author       lithium
-// @include      /^http://www\.piaotian\.com/html/\d+/\d+/$/
+// @include      /^https?://www\.piaotian\.com/html/\d+/\d+/$/
 // @require      https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js
 // @run-at       document-start
 // @updateURL  https://raw.githubusercontent.com/lithiumm1394/userscript/master/reader%40piaotian/reader%40piaotian.user.js
@@ -160,8 +160,8 @@ function loadChapter(url, num){
 			$(window).on("scroll", function() {
 				var scrollHeight = $(document).height();
 				var scrollPosition = $(window).height() + $(window).scrollTop() + 1;
-				//if (scrollHeight - scrollPosition < 1000) {
-				if ((scrollHeight - scrollPosition) / scrollHeight === 0) {
+				if (scrollHeight - scrollPosition < 1000) {
+				//if ((scrollHeight - scrollPosition) / scrollHeight === 0) {
 					loadChapter(nexturl, num+1);
 				}
 			});
