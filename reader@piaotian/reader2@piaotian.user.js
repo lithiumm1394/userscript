@@ -31,7 +31,7 @@ retrive.then((data) => {
   + '<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">'
   + '</head><body>'
   + '<h1>' + data.title + '</h1>'
-  + '<h2>' + data.author + '</h2>'
+  + '<h2>作者： ' + data.author + '</h2>'
   + '<div class="menu"><ul>'
 
   for (let item of data.menu)
