@@ -1,5 +1,7 @@
-html {
+:root {
 	font-size: 4px;
+	--animation-duration: 1s;
+	--animation-iteration-count: 0;
 }
 
 body {
@@ -15,6 +17,13 @@ h1 {
 	font-size: 6rem;
 }
 
+.subtitle {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	border-top: 2px solid #ffab91;
+}
+
 h2 {
 	margin: 3rem 0;
 	font-size: 5rem;
@@ -26,39 +35,36 @@ button {
 	padding: 0;
 }
 
-.subtitle {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	border-top: 2px solid #ffab91;
-}
-
 .material-icons.light-48 {
 	font-size: 8rem;
 	color: #ff5722;
 }
 
-.menu {
+@keyframes slide {
+	from {margin-top: 0;}
+	to {margin-top: 1000px;}
+}
+
+ul {
 	margin: 0;
 	padding: 0;
 	list-style: none;
+	animation-name: slide;
+	animation-duration: var(--animation-duration);
+	animation-timing-function: ease-in;
+	animation-iteration-count: var(--animation-iteration-count);
+	animation-direction: alternate;
 }
 
-.menu li {
+ul li {
 	font-size: 4.5rem;
 	line-height: 2.5;
 	border-bottom: 1px solid #ffccbc;
 }
 
-/*menu animation*/
-.slidedown {
-	transition: transform 0.5s;
-	transform: translateY(100px);
-}
 
-.slideup {
-	transition: transform 1s;
-}
+
+
 
 .mainbody.menu {
 	width: 75%;

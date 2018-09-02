@@ -9,22 +9,20 @@ var reverseList = function(node){
 	})
 }
 
-var reverseListAnim = async function() {
-	let container = document.querySelector('ul')
-	container.className = 'menu slidedown'
-	console.log('start')
-	const result = await reverseList(container)
-	console.log(result)
-	container.className = 'menu slideup'
+var slide = function(time){
+	return new Promise(resolve => {
+		let container = document.querySelector('ul')
+		container.style.setProperty('--animation-duration', time)
+		container.style.setProperty('--animation-iteration-count', 2)	//start animation
+		setTimeout(resolve('finish'), time)
+	})
 }
 
-function reverseList2(){
-	// let container = document.getElementById('menu')
-	let container = document.querySelector('ul')
-	let arr = []
-	container.classList.add('slidedown')
-	while (container.firstChild)
-		arr.push(container.removeChild(container.firstChild))
-	while (arr.length > 0)
-		container.appendChild(arr.pop())
+var reverseListAnim = async function() {
+	console.log('start')
+	const animation = slide(500)
+	const result = reverseList(container)
+	if (await animation == 'finish' && await result == finish)
+		document.querySelector('ul').style.setProperty('--animation-iteration-count', 0)
+	console.log(result)
 }
