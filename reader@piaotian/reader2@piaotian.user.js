@@ -32,12 +32,12 @@ retrive.then((data) => {
   + '</head><body>'
   + '<h1>' + data.title + '</h1>'
   + '<h2>' + data.author + '</h2>'
-  + '<ul>'
+  + '<div class="menu"><ul>'
 
   for (let item of data.menu)
     html += '<li>' + item.text + '</li>'
 
-  html += '</ul></body></html>'
+  html += '</ul></div></body></html>'
 
   document.write(html)
   document.close()
