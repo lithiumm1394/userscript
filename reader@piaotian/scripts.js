@@ -26,7 +26,7 @@ var slide = function(node, time){
 var reverseListAnim = async function() {
 	let container = document.querySelector('ul')
 	console.log('start')
-	const animation = slide(container, 1000)
+	const animation = slide(container, 500)
 	const result = reverseList(container)
 	console.log(await animation)
 	console.log(await result)
