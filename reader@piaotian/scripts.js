@@ -17,7 +17,7 @@ var slide = function(node, time){
 		setTimeout(function(){
 			resolve('slide finish')
 			console.log('animation finish')
-		}, time)
+		}, time*2)
 	})
 }
 
