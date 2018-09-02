@@ -4,6 +4,8 @@
 // @description  飘天UI改为起点UI
 // @author       lithium
 // @include      /^https?://www\.piaotian\.com/html/\d+/\d+/$/
+// @updateURL  https://raw.githubusercontent.com/lithiumm1394/userscript/master/reader%40piaotian/reader2%40piaotian.user.js
+// @downloadURL  https://raw.githubusercontent.com/lithiumm1394/userscript/master/reader%40piaotian/reader2%40piaotian.user.js
 // ==/UserScript==
 
 // 获取章节目录数据
