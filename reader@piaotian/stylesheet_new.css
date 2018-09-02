@@ -1,7 +1,8 @@
 :root {
 	font-size: 4px;
-	--animation-duration: 1s;
-	--animation-iteration-count: 0;
+/*	--animation-duration: 1s;
+	--animation-iteration-count: 0;*/
+	--transition-duration: 1s;
 }
 
 body {
@@ -40,20 +41,25 @@ button {
 	color: #ff5722;
 }
 
-@keyframes slide {
+/*@keyframes slide {
 	from {transform: translateY(0);}
 	to {transform: translateY(500px);}
-}
+}*/
 
 ul {
 	margin: 0;
 	padding: 0;
 	list-style: none;
-	animation-name: slide;
+	transition: transform var(--transition-duration) ease-in
+/*	animation-name: slide;
 	animation-duration: var(--animation-duration);
 	animation-timing-function: ease-in;
 	animation-iteration-count: var(--animation-iteration-count);
-	animation-direction: alternate;
+	animation-direction: alternate;*/
+}
+
+.active {
+	transform: translateY(500px);
 }
 
 ul li {
