@@ -9,7 +9,28 @@ h1 {
 	margin: 2rem 0;
 	text-align: center;
 	font-size: 4rem;
-	border-bottom: 4px solid #ffab91;
+}
+
+h2 {
+	margin: 2rem 0;
+}
+
+button {
+	border-width: 0;
+	background-color: transparent;
+
+}
+
+.subtitle {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	border-top: 4px solid #ffab91;
+}
+
+.material-icons.light-48 {
+	font-size: 2em;
+	color: #ff5722;
 }
 
 .menu ul {
@@ -102,9 +123,7 @@ footer {
 	font-size: 1.5em;
 }
 
-.material-icons.light-48 {
-	font-size: 3em;
-}
+
 
 .suboption {
 	height: 120px;
