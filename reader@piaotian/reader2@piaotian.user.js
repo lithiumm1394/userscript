@@ -27,7 +27,7 @@ let retrive = new Promise(
 // 建立新html文件
 retrive.then((data) => {
   let html = '<html><head>'
-  + '<link rel="stylesheet" type="text/css" href="https://rawgit.com/lithiumm1394/userscript/master/reader%40piaotian/stylesheet.css">'
+  + '<link rel="stylesheet" type="text/css" href="https://rawgit.com/lithiumm1394/userscript/master/reader%40piaotian/stylesheet_new.css">'
   + '<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">'
   + '</head><body>'
   + '<h1>' + data.title + '</h1>'
