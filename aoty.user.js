@@ -23,7 +23,6 @@ const links = [
   { text: 'iplusflex', href: 'https://www.iplusflex.co/?s=' + keyword},
   { text: 'iplushub', href: 'https://iplushub.me/?s=' + keyword},
   { text: 'iPlusfree', href: 'http://iplusfree.org/?s=' + keyword},
-  { text: 'ipluseveryday（自压）', href: 'http://www.ipluseveryday.com/search?q=' + keyword},
   { text: '微博搜索', href: 'http://s.weibo.com/weibo/' + keyword},
   { text: 'Google', href: 'https://www.google.com/search?q=' + keyword + '+aac'},
 ];
